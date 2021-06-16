@@ -1,6 +1,8 @@
 import { Monsters } from '../../src/data/monster';
 import { Quests } from '../../src/data/quest';
 
+import fs from 'fs';
+
 describe('data', () => {
   function uniq<T>(array: T[]): T[] {
     const knownElements = new Set<T>();
@@ -9,7 +11,7 @@ describe('data', () => {
     }
     return Array.from(knownElements);
   }
-  it("should all monster includes quest's monsters", () => {
+  it("should all monster include quest's monsters", () => {
     const questMonsters = uniq(Quests.flatMap((q) => q.monsters));
     const targetMonsters = Monsters.map((m) => m.name);
 
@@ -22,5 +24,18 @@ describe('data', () => {
 
     expect(monstersOnlyIncludesQuest).toHaveLength(0);
     expect(monstersOnlyTargets).toHaveLength(0);
+  });
+
+  it('should all monster have image', () => {
+    const targetMonsters = Monsters.map((m) => m.image);
+
+    fs.readdir('./src/assets/monsters', (err, files) => {
+      if (err) throw err;
+      const fileList = files.filter((file) => /.*\.png$/.test(file));
+      const monstersOnlyTargets = targetMonsters.filter(
+        (tm) => !fileList.includes(tm)
+      );
+      expect(monstersOnlyTargets).toHaveLength(0);
+    });
   });
 });

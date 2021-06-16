@@ -148,7 +148,7 @@ export const Monsters: Monster[] = [
 
   {
     name: 'ヌシ・ジンオウガ',
-    image: 'ヌシジンオウガ.png',
+    image: 'ヌシジンオウガ.png',
     apex: true,
     old: false,
   },
@@ -316,7 +316,7 @@ export const Monsters: Monster[] = [
 
   {
     name: '奇しき赫耀のバルファルク',
-    image: 'バルファルク.png',
+    image: 'バルファルク.png',
     apex: false,
     old: true,
   },
