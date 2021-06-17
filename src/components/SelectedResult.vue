@@ -116,6 +116,10 @@ export default defineComponent({
   align-items: center;
 }
 
+.monster {
+  margin: 0.2em 0.8em;
+}
+
 .weapom-img,
 .monster-img {
   width: 64px;
