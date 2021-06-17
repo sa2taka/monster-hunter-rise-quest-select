@@ -1,15 +1,33 @@
 <template>
-  <select-quest></select-quest>
+  <select-quest v-if="!select" @select="onSelect" />
+  <div v-else>
+    <selected-result :result="select" />
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import SelectQuest from './components/SelectQuest.vue';
+import SelectedResult from './components/SelectedResult.vue';
+import { Result } from './types/result';
 
 export default defineComponent({
   name: 'App',
   components: {
     SelectQuest,
+    SelectedResult,
+  },
+  setup: () => {
+    const select = ref<Result | null>(null);
+
+    const onSelect = (result: Result) => {
+      select.value = result;
+    };
+
+    return {
+      select,
+      onSelect,
+    };
   },
 });
 </script>

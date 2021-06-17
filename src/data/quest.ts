@@ -1,11 +1,19 @@
+import { Monster, Monsters } from './monster';
+
 export interface Quest {
+  name: string;
+  level: number;
+  type: '里' | '集会所' | 'イベント' | '高難度';
+  monsters: Monster[];
+}
+export interface RawQuest {
   name: string;
   level: number;
   type: '里' | '集会所' | 'イベント' | '高難度';
   monsters: string[];
 }
 
-export const Quests: Quest[] = [
+export const RawQuests: RawQuest[] = [
   {
     name: '三位一体の薙ぎ鎌',
     level: 2,
@@ -1168,3 +1176,15 @@ export const Quests: Quest[] = [
     monsters: ['トビカガチ', 'ベリオロス', 'ナルガクルガ'],
   },
 ];
+
+export const Quests: Quest[] = RawQuests.map((quest) => {
+  const monsters = quest.monsters.map(
+    (questMonster) => Monsters.find((monster) => questMonster == monster.name)!
+  );
+  return {
+    name: quest.name,
+    level: quest.level,
+    type: quest.type,
+    monsters,
+  };
+});

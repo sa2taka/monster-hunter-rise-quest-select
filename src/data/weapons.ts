@@ -5,20 +5,20 @@ export interface Weapon {
 
 export const Weapons: Weapon[] = [
   {
-    name: '片手剣',
-    image: '片手剣.png',
-  },
-  {
-    name: '双剣',
-    image: '双剣.png',
-  },
-  {
     name: '大剣',
     image: '大剣.png',
   },
   {
     name: '太刀',
     image: '太刀.png',
+  },
+  {
+    name: '片手剣',
+    image: '片手剣.png',
+  },
+  {
+    name: '双剣',
+    image: '双剣.png',
   },
   {
     name: 'ハンマー',
@@ -50,10 +50,14 @@ export const Weapons: Weapon[] = [
   },
   {
     name: 'ライトボウガン',
-    image: 'ライトボウガン.png',
+    image: 'ライト.png',
   },
   {
     name: 'ヘビィボウガン',
-    image: 'ヘビィボウガン.png',
+    image: 'ヘビィ.png',
+  },
+  {
+    name: '弓',
+    image: '弓.png',
   },
 ];

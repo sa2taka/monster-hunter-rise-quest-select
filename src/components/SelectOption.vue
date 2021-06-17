@@ -232,12 +232,12 @@
         </div>
         <div class="option-row">
           <input
-            id="gunlance"
-            v-model="option.weapons.gunlance"
+            id="switchAxe"
+            v-model="option.weapons.switchAxe"
             type="checkbox"
             name="weapons"
           />
-          <label for="gunlance">スラッシュアックス</label>
+          <label for="switchAxe">スラッシュアックス</label>
         </div>
         <div class="option-row">
           <input
