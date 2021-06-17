@@ -5,4 +5,7 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
   plugins: [vue()],
   base: '/monster-hunter-rise-quest-select/',
+  build: {
+    outDir: 'docs',
+  },
 });

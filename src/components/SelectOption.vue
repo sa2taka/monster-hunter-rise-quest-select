@@ -1,7 +1,12 @@
 <template>
   <div class="options">
     <div class="option">
-      <input id="open-menu_level" class="open-menu_check" type="checkbox" />
+      <input
+        id="open-menu_level"
+        class="open-menu_check"
+        type="checkbox"
+        checked
+      />
       <label class="open-menu_label" for="open-menu_level">
         クエストのレベル
       </label>
@@ -73,7 +78,12 @@
     </div>
 
     <div class="option">
-      <input id="open-menu_type" class="open-menu_check" type="checkbox" />
+      <input
+        id="open-menu_type"
+        class="open-menu_check"
+        type="checkbox"
+        checked
+      />
       <label class="open-menu_label" for="open-menu_type">
         クエストのタイプ
       </label>
@@ -118,7 +128,12 @@
     </div>
 
     <div class="option">
-      <input id="open-menu_monster" class="open-menu_check" type="checkbox" />
+      <input
+        id="open-menu_monster"
+        class="open-menu_check"
+        type="checkbox"
+        checked
+      />
       <label class="open-menu_label" for="open-menu_monster">
         モンスターの種類
       </label>
@@ -154,7 +169,12 @@
     </div>
 
     <div class="option">
-      <input id="open-menu_weapon" class="open-menu_check" type="checkbox" />
+      <input
+        id="open-menu_weapon"
+        class="open-menu_check"
+        type="checkbox"
+        checked
+      />
       <label class="open-menu_label" for="open-menu_weapon"> 武器種 </label>
       <div class="open-menu_content">
         <div class="option-row">
@@ -320,9 +340,11 @@ export default defineComponent({
 .options {
   display: flex;
   flex-wrap: wrap;
+  flex: 1 1 auto;
 }
 
 .option {
+  flex: 1 1 auto;
   margin: 1em 1.4em;
 }
 
@@ -380,7 +402,7 @@ export default defineComponent({
   content: '\e900';
 }
 .open-menu_check:checked + .open-menu_label + .open-menu_content {
-  height: 50px;
+  height: 64px;
   opacity: 1;
   padding: 10px;
   visibility: visible;

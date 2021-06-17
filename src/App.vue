@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <select-quest v-if="!select" @select="onSelect" />
-    <div v-else>
+    <select-quest @select="onSelect" />
+    <div v-if="select" class="select-margin">
       <selected-result :result="select" />
       <button @click="select = null">戻る</button>
     </div>
@@ -46,11 +46,16 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  transition: none;
 }
 
 .container {
   margin: auto auto;
   width: 80%;
   max-width: 864px;
+}
+
+.select-margin {
+  margin-top: 2em;
 }
 </style>
