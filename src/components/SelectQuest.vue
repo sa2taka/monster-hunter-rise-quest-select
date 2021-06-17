@@ -53,6 +53,48 @@ const defaultOption: IOption = {
   },
 };
 
+const getOptionByUrl = () => {
+  const url = new URL(window.location.toString());
+  return {
+    levels: {
+      level1: url.searchParams.get('level1') !== 'false',
+      level2: url.searchParams.get('level2') !== 'false',
+      level3: url.searchParams.get('level3') !== 'false',
+      level4: url.searchParams.get('level4') !== 'false',
+      level5: url.searchParams.get('level5') !== 'false',
+      level6: url.searchParams.get('level6') !== 'false',
+      level7: url.searchParams.get('level7') !== 'false',
+    },
+    types: {
+      village: url.searchParams.get('village') !== 'false',
+      lobby: url.searchParams.get('lobby') !== 'false',
+      event: url.searchParams.get('event') !== 'false',
+      highLevel: url.searchParams.get('highLevel') !== 'false',
+    },
+    monster: {
+      normal: url.searchParams.get('normal') !== 'false',
+      apex: url.searchParams.get('apex') !== 'false',
+      old: url.searchParams.get('old') !== 'false',
+    },
+    weapons: {
+      greadSword: url.searchParams.get('greadSword') !== 'false',
+      longSword: url.searchParams.get('longSword') !== 'false',
+      swordAndShield: url.searchParams.get('swordAndShield') !== 'false',
+      dualBlades: url.searchParams.get('dualBlades') !== 'false',
+      hammer: url.searchParams.get('hammer') !== 'false',
+      huntingHorn: url.searchParams.get('huntingHorn') !== 'false',
+      lance: url.searchParams.get('lance') !== 'false',
+      gunlance: url.searchParams.get('gunlance') !== 'false',
+      switchAxe: url.searchParams.get('switchAxe') !== 'false',
+      chargeBlade: url.searchParams.get('chargeBlade') !== 'false',
+      insectGlaive: url.searchParams.get('insectGlaive') !== 'false',
+      lightBowgun: url.searchParams.get('lightBowgun') !== 'false',
+      heaveyBowgun: url.searchParams.get('heaveyBowgun') !== 'false',
+      bow: url.searchParams.get('bow') !== 'false',
+    },
+  };
+};
+
 const filterQuest = (option: IOption) => {
   const selectLevels: number[] = [];
   if (option.levels.level1) {
@@ -151,6 +193,75 @@ const filterWeapon = (option: IOption) => {
   return filterd;
 };
 
+const setUrl = (option: IOption) => {
+  const url = new URL(window.location.toString());
+  url.searchParams.set('level1', option.levels.level1 ? 'true' : 'false');
+  url.searchParams.set('level2', option.levels.level2 ? 'true' : 'false');
+  url.searchParams.set('level3', option.levels.level3 ? 'true' : 'false');
+  url.searchParams.set('level4', option.levels.level4 ? 'true' : 'false');
+  url.searchParams.set('level5', option.levels.level5 ? 'true' : 'false');
+  url.searchParams.set('level6', option.levels.level6 ? 'true' : 'false');
+  url.searchParams.set('level7', option.levels.level7 ? 'true' : 'false');
+
+  url.searchParams.set('village', option.types.village ? 'true' : 'false');
+  url.searchParams.set('lobby', option.types.lobby ? 'true' : 'false');
+  url.searchParams.set('event', option.types.event ? 'true' : 'false');
+  url.searchParams.set('highLevel', option.types.highLevel ? 'true' : 'false');
+
+  url.searchParams.set('normal', option.monster.normal ? 'true' : 'false');
+  url.searchParams.set('apex', option.monster.apex ? 'true' : 'false');
+  url.searchParams.set('old', option.monster.old ? 'true' : 'false');
+
+  url.searchParams.set(
+    'greadSword',
+    option.weapons.greadSword ? 'true' : 'false'
+  );
+  url.searchParams.set(
+    'longSword',
+    option.weapons.longSword ? 'true' : 'false'
+  );
+  url.searchParams.set(
+    'swordAndShield',
+    option.weapons.swordAndShield ? 'true' : 'false'
+  );
+  url.searchParams.set(
+    'dualBlades',
+    option.weapons.dualBlades ? 'true' : 'false'
+  );
+  url.searchParams.set('hammer', option.weapons.hammer ? 'true' : 'false');
+  url.searchParams.set(
+    'huntingHorn',
+    option.weapons.huntingHorn ? 'true' : 'false'
+  );
+  url.searchParams.set('lance', option.weapons.lance ? 'true' : 'false');
+  url.searchParams.set(
+    'gunlance',
+    option.weapons.greadSword ? 'true' : 'false'
+  );
+  url.searchParams.set(
+    'switchAxe',
+    option.weapons.switchAxe ? 'true' : 'false'
+  );
+  url.searchParams.set(
+    'chargeBlade',
+    option.weapons.chargeBlade ? 'true' : 'false'
+  );
+  url.searchParams.set(
+    'insectGlaive',
+    option.weapons.insectGlaive ? 'true' : 'false'
+  );
+  url.searchParams.set(
+    'lightBowgun',
+    option.weapons.lightBowgun ? 'true' : 'false'
+  );
+  url.searchParams.set(
+    'heaveyBowgun',
+    option.weapons.heaveyBowgun ? 'true' : 'false'
+  );
+  url.searchParams.set('bow', option.weapons.bow ? 'true' : 'false');
+  window.history.pushState({}, '', url.toString());
+};
+
 export default defineComponent({
   name: 'SelectQuest',
   components: {
@@ -158,7 +269,7 @@ export default defineComponent({
   },
   emits: ['select'],
   setup: (_, context) => {
-    const deepCopyDefaultOption = JSON.parse(JSON.stringify(defaultOption));
+    const deepCopyDefaultOption = JSON.parse(JSON.stringify(getOptionByUrl()));
     const option = reactive(deepCopyDefaultOption);
 
     const reset = () => {
@@ -177,6 +288,10 @@ export default defineComponent({
 
       context.emit('select', { quest: selectQuest, weapon: selectWeapon });
     };
+
+    watch(option, () => {
+      setUrl(option);
+    });
 
     return {
       option,
