@@ -56,14 +56,15 @@ export default defineComponent({
   },
   setup: (props) => {
     const targetTime = computed(() => {
-      const orgTime = props.result.quest.level + 3;
+      const orgTime = props.result.quest.level + 4;
       const additionalTime = props.result.quest.monsters.some(
         (monster) => monster.apex || monster.old
       )
         ? 5
         : 0;
-      const targetCountTime =
-        (props.result.quest.monsters.length - 1) * 0.5 * orgTime;
+      const targetCountTime = Math.floor(
+        (props.result.quest.monsters.length - 1) * 0.8 * orgTime
+      );
       const range = orgTime;
       const questAdditionalTome = props.result.quest.type === '高難度' ? 4 : 0;
       return (
