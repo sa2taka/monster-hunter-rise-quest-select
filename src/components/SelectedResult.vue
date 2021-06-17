@@ -29,6 +29,15 @@
         <span class="weapon-name">{{ result.weapon.name }}</span>
       </div>
     </div>
+    <div class="time">
+      <div class="subtitle">制限時間</div>
+      <div class="deadline">
+        <span class="deadline-info">
+          <span class="deadline-minuts">{{ targetTime }}</span>
+          分
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -46,16 +55,15 @@ export default defineComponent({
     },
   },
   setup: (props) => {
-    console.log(props.result);
     const targetTime = computed(() => {
       const orgTime = props.result.quest.level + 2;
       const additionalTime = props.result.quest.monsters.some(
         (monster) => monster.apex || monster.old
       )
-        ? 5
+        ? 2
         : 0;
       const targetCountTime =
-        (props.result.quest.monsters.length - 1) * 1.5 * orgTime;
+        (props.result.quest.monsters.length - 1) * 0.5 * orgTime;
       const range = Math.floor(orgTime * 0.8);
 
       return (
@@ -133,5 +141,14 @@ export default defineComponent({
 .quest-additional-info {
   font-size: 24px;
   margin: 0.4em 0 1em;
+}
+
+.time {
+  margin: 1.2em 0;
+}
+
+.deadline-minuts {
+  font-size: 24px;
+  font-weight: 600;
 }
 </style>
