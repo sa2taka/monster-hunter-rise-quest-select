@@ -51,7 +51,7 @@ export default defineComponent({
 
 .container {
   margin: auto auto;
-  width: 80%;
+  width: 95%;
   max-width: 864px;
 }
 

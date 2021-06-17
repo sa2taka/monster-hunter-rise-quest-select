@@ -1,5 +1,5 @@
 <template>
-  <div class="result">
+  <div id="result" class="result">
     <div class="quest">
       <div class="subtitle">クエスト</div>
       <div class="quest-info">
@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, PropType } from 'vue';
+import { defineComponent, computed, PropType, onMounted } from 'vue';
 
 import { Result } from '../types/result';
 
@@ -60,16 +60,17 @@ export default defineComponent({
       const additionalTime = props.result.quest.monsters.some(
         (monster) => monster.apex || monster.old
       )
-        ? 2
+        ? 5
         : 0;
       const targetCountTime =
         (props.result.quest.monsters.length - 1) * 0.5 * orgTime;
       const range = Math.floor(orgTime * 0.8);
-
+      const questAdditionalTome = props.result.quest.type === '高難度' ? 4 : 0;
       return (
         orgTime +
         additionalTime +
         targetCountTime +
+        questAdditionalTome +
         Math.floor(range * Math.random())
       );
     });
@@ -78,6 +79,11 @@ export default defineComponent({
       () =>
         `/monster-hunter-rise-quest-select/weapons/${props.result.weapon.image}`
     );
+
+    onMounted(() => {
+      location.hash = '';
+      location.hash = 'result';
+    });
 
     return {
       targetTime,

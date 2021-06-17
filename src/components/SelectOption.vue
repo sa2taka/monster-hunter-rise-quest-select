@@ -1,15 +1,9 @@
 <template>
   <div class="options">
     <div class="option">
-      <input
-        id="open-menu_level"
-        class="open-menu_check"
-        type="checkbox"
-        checked
-      />
-      <label class="open-menu_label" for="open-menu_level">
-        クエストのレベル
-      </label>
+      <span class="open-menu_label" for="open-menu_level"
+        >クエストのレベル</span
+      >
       <div class="open-menu_content">
         <div class="option-row">
           <input
@@ -78,15 +72,7 @@
     </div>
 
     <div class="option">
-      <input
-        id="open-menu_type"
-        class="open-menu_check"
-        type="checkbox"
-        checked
-      />
-      <label class="open-menu_label" for="open-menu_type">
-        クエストのタイプ
-      </label>
+      <span class="open-menu_label"> クエストのタイプ </span>
       <div class="open-menu_content">
         <div class="option-row">
           <input
@@ -128,15 +114,7 @@
     </div>
 
     <div class="option">
-      <input
-        id="open-menu_monster"
-        class="open-menu_check"
-        type="checkbox"
-        checked
-      />
-      <label class="open-menu_label" for="open-menu_monster">
-        モンスターの種類
-      </label>
+      <span class="open-menu_label"> モンスターの種類 </span>
       <div class="open-menu_content">
         <div class="option-row">
           <input
@@ -169,13 +147,7 @@
     </div>
 
     <div class="option">
-      <input
-        id="open-menu_weapon"
-        class="open-menu_check"
-        type="checkbox"
-        checked
-      />
-      <label class="open-menu_label" for="open-menu_weapon"> 武器種 </label>
+      <span class="open-menu_label"> 武器種 </span>
       <div class="open-menu_content">
         <div class="option-row">
           <input
@@ -340,17 +312,13 @@ export default defineComponent({
 .options {
   display: flex;
   flex-wrap: wrap;
-  flex: 1 1 auto;
 }
 
 .option {
   flex: 1 1 auto;
-  margin: 1em 1.4em;
+  margin: 1em 0.6em;
 }
 
-.open-menu_check {
-  display: none;
-}
 .open-menu_label {
   background: #0068b7;
   color: #fff;
@@ -359,58 +327,21 @@ export default defineComponent({
   padding: 10px;
   position: relative;
   height: 38px;
-  box-sizing: border-box;
   text-align: left;
 }
-.open-menu_label:after {
-  background: #00479d;
-  box-sizing: border-box;
-  content: '\e900';
-  display: block;
-  height: 38px;
-  padding: 10px 20px;
-  position: absolute;
-  right: 0;
-  top: 0;
 
-  font-size: 1.2em;
-
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 .open-menu_content {
   border: 1px solid #333;
-  height: 0;
-  opacity: 0;
-  padding: 0 10px;
-  transition: 0.5s;
-  visibility: hidden;
+  opacity: 1;
+  padding: 10px;
 
   display: flex;
   flex-wrap: wrap;
-}
-.open-menu_check:checked + .open-menu_label:after {
-  content: '\e900';
-}
-.open-menu_check:checked + .open-menu_label + .open-menu_content {
-  height: 64px;
-  opacity: 1;
-  padding: 10px;
-  visibility: visible;
 }
 
 .option-row {
   display: flex;
   align-items: center;
-  margin: auto 1em;
+  margin: 0.6em 1em;
 }
 </style>
