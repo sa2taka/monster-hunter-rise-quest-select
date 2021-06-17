@@ -204,6 +204,8 @@ const setUrl = (option: IOption) => {
     for (let [key, value] of Object.entries(object)) {
       if (!value) {
         url.searchParams.set(key, 'false');
+      } else {
+        url.searchParams.delete(key);
       }
     }
   };
