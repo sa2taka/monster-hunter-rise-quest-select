@@ -1,7 +1,9 @@
 <template>
-  <select-quest v-if="!select" @select="onSelect" />
-  <div v-else>
-    <selected-result :result="select" />
+  <div class="container">
+    <select-quest v-if="!select" @select="onSelect" />
+    <div v-else>
+      <selected-result :result="select" />
+    </div>
   </div>
 </template>
 
@@ -33,6 +35,8 @@ export default defineComponent({
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=New+Tegomin&family=Shippori+Mincho&display=swap');
+
 #app {
   font-family: Helvetica Neue, Arial, Hiragino Kaku Gothic ProN, Hiragino Sans,
     BIZ UDPGothic, Meiryo, sans-serif;
@@ -41,5 +45,11 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.container {
+  margin: auto auto;
+  width: 80%;
+  max-width: 864px;
 }
 </style>

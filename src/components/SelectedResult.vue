@@ -1,18 +1,11 @@
 <template>
   <div class="result">
-    <div class="weapon">
-      <div class="subtitle">武器種</div>
-      <div class="weapom-img">{{ result.weapon.name }}</div>
-      <div>
-        <img :src="weaponImage" />
-      </div>
-    </div>
     <div class="quest">
       <div class="subtitle">クエスト</div>
       <div class="quest-info">
         <span class="quest-name">{{ result.quest.name }}</span>
         <span class="quest-additional-info">
-          （{{ result.quest.type }} ★{{ result.quest.level }} )
+          {{ result.quest.type }} {{ '★'.repeat(result.quest.level) }}
         </span>
       </div>
       <div class="monsters">
@@ -24,6 +17,13 @@
           <img class="monster-img" :src="`/monsters/${monster.image}`" />
           <span class="monster-name">{{ monster.name }}</span>
         </div>
+      </div>
+    </div>
+    <div class="weapon">
+      <div class="subtitle">武器種</div>
+      <div class="weapon-info">
+        <img class="weapom-img" :src="weaponImage" />
+        <span class="weapon-name">{{ result.weapon.name }}</span>
       </div>
     </div>
   </div>
@@ -73,4 +73,55 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.result {
+  display: flex;
+  flex-flow: column;
+}
+.subtitle {
+  font-size: 1.2em;
+  color: #242424;
+}
+
+.weapon,
+.quest-info,
+.monsters,
+.quest {
+  display: flex;
+  align-items: center;
+}
+
+.quest-info,
+.quest,
+.weapon {
+  flex-direction: column;
+}
+
+.weapon {
+  margin: 1.4em 0;
+}
+
+.weapon-info,
+.monster {
+  display: flex;
+  flex-flow: column;
+  font-size: 1.2em;
+  font-weight: 600;
+  align-items: center;
+}
+
+.weapom-img,
+.monster-img {
+  width: 64px;
+}
+
+.quest-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 48px;
+}
+
+.quest-additional-info {
+  font-size: 24px;
+  margin: 0.4em 0 1em;
+}
+</style>
