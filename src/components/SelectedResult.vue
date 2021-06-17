@@ -14,7 +14,10 @@
           :key="monster.name"
           class="monster"
         >
-          <img class="monster-img" :src="`/monsters/${monster.image}`" />
+          <img
+            class="monster-img"
+            :src="`/monster-hunter-rise-quest-select/monsters/${monster.image}`"
+          />
           <span class="monster-name">{{ monster.name }}</span>
         </div>
       </div>
@@ -63,7 +66,10 @@ export default defineComponent({
       );
     });
 
-    const weaponImage = computed(() => `/weapons/${props.result.weapon.image}`);
+    const weaponImage = computed(
+      () =>
+        `/monster-hunter-rise-quest-select/weapons/${props.result.weapon.image}`
+    );
 
     return {
       targetTime,
