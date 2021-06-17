@@ -5,7 +5,7 @@ export interface Monster {
   old: boolean;
 }
 
-export const Monsters: Monster[] = [
+export const Monsters = [
   {
     name: 'アオアシラ',
     image: 'アオアシラ.png',

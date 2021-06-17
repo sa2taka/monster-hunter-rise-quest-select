@@ -1,7 +1,7 @@
 export interface Quest {
   name: string;
   level: number;
-  type: string;
+  type: '里' | '集会所' | 'イベント' | '高難度';
   monsters: string[];
 }
 
@@ -737,7 +737,7 @@ export const Quests: Quest[] = [
   {
     name: '高難度：いざ挑め、覇者の行列',
     level: 6,
-    type: '里',
+    type: '高難度',
     monsters: ['ラージャン', 'バゼルギウス', 'マガイマガド'],
   },
 
@@ -1115,42 +1115,42 @@ export const Quests: Quest[] = [
   {
     name: '高難度：災禍を纏うもの',
     level: 7,
-    type: '集会所',
+    type: '高難度',
     monsters: ['マガイマガド', 'バゼルギウス'],
   },
 
   {
     name: '高難度：竜獣戯画',
     level: 7,
-    type: '集会所',
+    type: '高難度',
     monsters: ['ゴシャハギ', 'ティガレックス', 'タマミツネ'],
   },
 
   {
     name: '高難度：嵐ト炎ヲ司ルモノ',
     level: 7,
-    type: '集会所',
+    type: '高難度',
     monsters: ['クシャルダオラ', 'テオ・テスカトル'],
   },
 
   {
     name: '高難度：鬼はいずこ',
     level: 7,
-    type: '集会所',
+    type: '高難度',
     monsters: ['オオナズチ', 'ラージャン'],
   },
 
   {
     name: '高難度：凶星、業火の地に降る',
     level: 7,
-    type: '集会所',
+    type: '高難度',
     monsters: ['奇しき赫耀のバルファルク', 'ヤツカダキ'],
   },
 
   {
     name: '高難度：猛者たちの酒宴',
     level: 7,
-    type: '集会所',
+    type: '高難度',
     monsters: ['リオレウス', 'ディアブロス', 'マガイマガド'],
   },
 
