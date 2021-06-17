@@ -3,6 +3,7 @@
     <select-quest v-if="!select" @select="onSelect" />
     <div v-else>
       <selected-result :result="select" />
+      <button @click="select = null">戻る</button>
     </div>
   </div>
 </template>
