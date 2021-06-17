@@ -215,7 +215,6 @@ const setUrl = (option: IOption) => {
   setUrl(monster);
   setUrl(weapon);
 
-  url.searchParams.set('bow', option.weapons.bow ? '' : 'false');
   window.history.pushState({}, '', url.toString());
 };
 
