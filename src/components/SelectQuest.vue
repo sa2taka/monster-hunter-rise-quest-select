@@ -195,70 +195,25 @@ const filterWeapon = (option: IOption) => {
 
 const setUrl = (option: IOption) => {
   const url = new URL(window.location.toString());
-  url.searchParams.set('level1', option.levels.level1 ? 'true' : 'false');
-  url.searchParams.set('level2', option.levels.level2 ? 'true' : 'false');
-  url.searchParams.set('level3', option.levels.level3 ? 'true' : 'false');
-  url.searchParams.set('level4', option.levels.level4 ? 'true' : 'false');
-  url.searchParams.set('level5', option.levels.level5 ? 'true' : 'false');
-  url.searchParams.set('level6', option.levels.level6 ? 'true' : 'false');
-  url.searchParams.set('level7', option.levels.level7 ? 'true' : 'false');
+  const level = option.levels;
+  const type = option.types;
+  const monster = option.monster;
+  const weapon = option.weapons;
 
-  url.searchParams.set('village', option.types.village ? 'true' : 'false');
-  url.searchParams.set('lobby', option.types.lobby ? 'true' : 'false');
-  url.searchParams.set('event', option.types.event ? 'true' : 'false');
-  url.searchParams.set('highLevel', option.types.highLevel ? 'true' : 'false');
+  const setUrl = (object: any) => {
+    for (let [key, value] of Object.entries(object)) {
+      if (!value) {
+        url.searchParams.set(key, 'false');
+      }
+    }
+  };
 
-  url.searchParams.set('normal', option.monster.normal ? 'true' : 'false');
-  url.searchParams.set('apex', option.monster.apex ? 'true' : 'false');
-  url.searchParams.set('old', option.monster.old ? 'true' : 'false');
+  setUrl(level);
+  setUrl(type);
+  setUrl(monster);
+  setUrl(weapon);
 
-  url.searchParams.set(
-    'greadSword',
-    option.weapons.greadSword ? 'true' : 'false'
-  );
-  url.searchParams.set(
-    'longSword',
-    option.weapons.longSword ? 'true' : 'false'
-  );
-  url.searchParams.set(
-    'swordAndShield',
-    option.weapons.swordAndShield ? 'true' : 'false'
-  );
-  url.searchParams.set(
-    'dualBlades',
-    option.weapons.dualBlades ? 'true' : 'false'
-  );
-  url.searchParams.set('hammer', option.weapons.hammer ? 'true' : 'false');
-  url.searchParams.set(
-    'huntingHorn',
-    option.weapons.huntingHorn ? 'true' : 'false'
-  );
-  url.searchParams.set('lance', option.weapons.lance ? 'true' : 'false');
-  url.searchParams.set(
-    'gunlance',
-    option.weapons.greadSword ? 'true' : 'false'
-  );
-  url.searchParams.set(
-    'switchAxe',
-    option.weapons.switchAxe ? 'true' : 'false'
-  );
-  url.searchParams.set(
-    'chargeBlade',
-    option.weapons.chargeBlade ? 'true' : 'false'
-  );
-  url.searchParams.set(
-    'insectGlaive',
-    option.weapons.insectGlaive ? 'true' : 'false'
-  );
-  url.searchParams.set(
-    'lightBowgun',
-    option.weapons.lightBowgun ? 'true' : 'false'
-  );
-  url.searchParams.set(
-    'heaveyBowgun',
-    option.weapons.heaveyBowgun ? 'true' : 'false'
-  );
-  url.searchParams.set('bow', option.weapons.bow ? 'true' : 'false');
+  url.searchParams.set('bow', option.weapons.bow ? '' : 'false');
   window.history.pushState({}, '', url.toString());
 };
 
