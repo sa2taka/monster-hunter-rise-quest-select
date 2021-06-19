@@ -1175,6 +1175,13 @@ export const RawQuests: RawQuest[] = [
     type: 'イベント',
     monsters: ['トビカガチ', 'ベリオロス', 'ナルガクルガ'],
   },
+
+  {
+    name: '破滅の鳥竜？',
+    level: 1,
+    type: 'イベント',
+    monsters: ['ドスバギィ', 'オサイズチ', 'クルルヤック'],
+  },
 ];
 
 export const Quests: Quest[] = RawQuests.map((quest) => {
