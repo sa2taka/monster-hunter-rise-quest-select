@@ -2,8 +2,8 @@
   <div>
     <select-option v-model="option" />
 
-    <button @click="select">選択開始</button>
-    <button @click="reset">リセット</button>
+    <button class="btn" @click="select">選択開始</button>
+    <button class="btn" @click="reset">リセット</button>
   </div>
 </template>
 
@@ -258,4 +258,18 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.btn {
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+  line-height: 50px;
+  padding: 0.2em 2em;
+  margin: 0 2em;
+  border-radius: 5%;
+  transition: all 0.2s ease;
+}
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+</style>

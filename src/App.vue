@@ -3,8 +3,9 @@
     <select-quest @select="onSelect" />
     <div v-if="select" class="select-margin">
       <selected-result :result="select" />
-      <button @click="select = null">戻る</button>
+      <button class="btn" @click="select = null">戻る</button>
     </div>
+    <div class="empty" />
   </div>
 </template>
 
@@ -57,5 +58,23 @@ export default defineComponent({
 
 .select-margin {
   margin-top: 2em;
+}
+
+.btn {
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+  line-height: 50px;
+  padding: 0.2em 2em;
+  margin: 0 2em;
+  border-radius: 5%;
+  transition: all 0.2s ease;
+}
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.empty {
+  height: 10vh;
 }
 </style>

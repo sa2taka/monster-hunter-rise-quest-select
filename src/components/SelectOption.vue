@@ -344,4 +344,11 @@ export default defineComponent({
   align-items: center;
   margin: 0.6em 1em;
 }
+
+.option-row > label {
+  font-size: 1.2em;
+  padding-right: 0.6em;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+}
 </style>

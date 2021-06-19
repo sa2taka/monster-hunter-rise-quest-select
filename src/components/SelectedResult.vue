@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, PropType, onMounted } from 'vue';
+import { defineComponent, computed, PropType, onMounted, onUpdated } from 'vue';
 
 import { Result } from '../types/result';
 
@@ -82,6 +82,11 @@ export default defineComponent({
     );
 
     onMounted(() => {
+      location.hash = '';
+      location.hash = 'result';
+    });
+
+    onUpdated(() => {
       location.hash = '';
       location.hash = 'result';
     });
