@@ -110,6 +110,15 @@
           />
           <label for="highLevel">高難度</label>
         </div>
+        <div class="option-row">
+          <input
+            id="arena"
+            v-model="option.types.arena"
+            type="checkbox"
+            name="types"
+          />
+          <label for="arena">闘技場</label>
+        </div>
       </div>
     </div>
 

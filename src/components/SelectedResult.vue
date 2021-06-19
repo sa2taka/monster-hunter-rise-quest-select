@@ -6,6 +6,9 @@
         <span class="quest-name">{{ result.quest.name }}</span>
         <span class="quest-additional-info">
           {{ result.quest.type }} {{ '★'.repeat(result.quest.level) }}
+          <span v-if="result.quest.type === '闘技場'" class="notation"
+            >(独断と偏見です)</span
+          >
         </span>
       </div>
       <div class="monsters">
@@ -163,5 +166,9 @@ export default defineComponent({
 .deadline-minuts {
   font-size: 24px;
   font-weight: 600;
+}
+
+.notation {
+  font-size: 10.5px;
 }
 </style>

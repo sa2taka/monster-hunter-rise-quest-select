@@ -1,16 +1,19 @@
 import { Monster, Monsters } from './monster';
+import { Weapon, Weapons } from './weapons';
 
 export interface Quest {
   name: string;
   level: number;
-  type: '里' | '集会所' | 'イベント' | '高難度';
+  type: '里' | '集会所' | 'イベント' | '高難度' | '闘技場';
   monsters: Monster[];
+  weapons?: Weapon[];
 }
 export interface RawQuest {
   name: string;
   level: number;
-  type: '里' | '集会所' | 'イベント' | '高難度';
+  type: '里' | '集会所' | 'イベント' | '高難度' | '闘技場';
   monsters: string[];
+  weapons?: string[];
 }
 
 export const RawQuests: RawQuest[] = [
@@ -1182,16 +1185,88 @@ export const RawQuests: RawQuest[] = [
     type: 'イベント',
     monsters: ['ドスバギィ', 'オサイズチ', 'クルルヤック'],
   },
+
+  {
+    name: '闘技大会01',
+    level: 1,
+    type: '闘技場',
+    monsters: ['クルルヤック'],
+    weapons: [
+      '太刀',
+      'ガンランス',
+      '狩猟笛',
+      'チャージアックス',
+      'ライトボウガン',
+    ],
+  },
+
+  {
+    name: '闘技大会02',
+    level: 2,
+    type: '闘技場',
+    monsters: ['ボルボロス'],
+    weapons: ['片手剣', 'ハンマー', 'ランス', '操虫棍', 'ヘビィボウガン'],
+  },
+
+  {
+    name: '闘技大会03',
+    level: 3,
+    type: '闘技場',
+    monsters: ['ロアルドロス', 'ナルガクルガ'],
+    weapons: ['双剣', '大剣', 'ハンマー', 'スラッシュアックス', '弓'],
+  },
+
+  {
+    name: '闘技大会04',
+    level: 6,
+    type: '闘技場',
+    monsters: ['ベリオロス'],
+    weapons: ['片手剣', 'ガンランス', '狩猟笛', 'チャージアックス', '弓'],
+  },
+
+  {
+    name: '闘技大会05',
+    level: 7,
+    type: '闘技場',
+    monsters: ['ラージャン'],
+    weapons: ['双剣', '大剣', '太刀', 'ランス', 'ヘビィボウガン'],
+  },
+
+  {
+    name: '闘技大会06',
+    level: 7,
+    type: '闘技場',
+    monsters: ['ラングロトラ', 'バサルモス', 'バゼルギウス'],
+    weapons: [
+      '太刀',
+      'ガンランス',
+      'チャージアックス',
+      '操虫棍',
+      'ライトボウガン',
+    ],
+  },
+
+  {
+    name: 'チャレンジクエスト01',
+    level: 2,
+    type: '闘技場',
+    monsters: ['ヨツミワドウ'],
+    weapons: ['双剣', 'ランス', 'ハンマー', '操虫棍', 'ヘビィボウガン'],
+  },
 ];
 
 export const Quests: Quest[] = RawQuests.map((quest) => {
   const monsters = quest.monsters.map(
     (questMonster) => Monsters.find((monster) => questMonster == monster.name)!
   );
+  const weapons = quest.weapons?.map(
+    (questWeapon) => Weapons.find((weapon) => questWeapon == weapon.name)!
+  );
   return {
     name: quest.name,
     level: quest.level,
     type: quest.type,
     monsters,
+    weapons,
   };
 });

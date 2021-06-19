@@ -1,5 +1,5 @@
 import { Monsters } from '../../src/data/monster';
-import { Quests } from '../../src/data/quest';
+import { RawQuests } from '../../src/data/quest';
 
 import fs from 'fs';
 
@@ -12,7 +12,7 @@ describe('data', () => {
     return Array.from(knownElements);
   }
   it("should all monster include quest's monsters", () => {
-    const questMonsters = uniq(Quests.flatMap((q) => q.monsters));
+    const questMonsters = uniq(RawQuests.flatMap((q) => q.monsters));
     const targetMonsters = Monsters.map((m) => m.name);
 
     const monstersOnlyIncludesQuest = questMonsters.filter(
@@ -29,7 +29,7 @@ describe('data', () => {
   it('should all monster have image', () => {
     const targetMonsters = Monsters.map((m) => m.image);
 
-    fs.readdir('./src/assets/monsters', (err, files) => {
+    fs.readdir('./public/monsters', (err, files) => {
       if (err) throw err;
       const fileList = files.filter((file) => /.*\.png$/.test(file));
       const monstersOnlyTargets = targetMonsters.filter(

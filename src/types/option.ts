@@ -13,6 +13,7 @@ export interface Option {
     lobby: boolean;
     event: boolean;
     highLevel: boolean;
+    arena: boolean;
   };
   monster: {
     normal: boolean;
