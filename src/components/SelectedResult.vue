@@ -141,7 +141,8 @@ export default defineComponent({
 }
 
 .quest-name {
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Shippori Mincho', '游明朝', 'Yu Mincho', YuMincho,
+    'Hiragino Mincho Pro', serif;
   font-size: 48px;
 }
 
