@@ -63,7 +63,7 @@ export default defineComponent({
         ? 5
         : 0;
       const targetCountTime = Math.floor(
-        (props.result.quest.monsters.length - 1) * 0.8 * orgTime
+        (props.result.quest.monsters.length - 1) * 0.6 * orgTime
       );
       const range = orgTime;
       const questAdditionalTome = props.result.quest.type === '高難度' ? 4 : 0;
