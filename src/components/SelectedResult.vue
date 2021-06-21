@@ -1,11 +1,21 @@
 <template>
-  <div id="result" class="result">
-    <div class="quest">
+  <div id="result" class="result disappear">
+    <div class="quest quest-disappear">
       <div class="subtitle">クエスト</div>
       <div class="quest-info">
         <span class="quest-name">{{ result.quest.name }}</span>
-        <span class="quest-additional-info">
-          {{ result.quest.type }} {{ '★'.repeat(result.quest.level) }}
+        <span class="central-line animation-line" />
+        <span class="quest-addition-info-wrapper">
+          <span class="quest-additional-info">
+            {{ result.quest.type }}
+            <span
+              v-for="i in result.quest.level"
+              :key="i"
+              class="star"
+              :data-star="i"
+              >★
+            </span>
+          </span>
         </span>
       </div>
       <div class="monsters">
@@ -22,14 +32,14 @@
         </div>
       </div>
     </div>
-    <div class="weapon">
+    <div class="weapon weapon-disappear">
       <div class="subtitle">武器種</div>
       <div class="weapon-info">
         <img class="weapom-img" :src="weaponImage" />
         <span class="weapon-name">{{ result.weapon.name }}</span>
       </div>
     </div>
-    <div class="time">
+    <div class="time time-disappear">
       <div class="subtitle">制限時間</div>
       <div class="deadline">
         <span class="deadline-info">
@@ -42,7 +52,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, PropType, onMounted, onUpdated } from 'vue';
+import {
+  defineComponent,
+  computed,
+  PropType,
+  onMounted,
+  onUpdated,
+  ref,
+} from 'vue';
 
 import { Result } from '../types/result';
 
@@ -55,6 +72,7 @@ export default defineComponent({
     },
   },
   setup: (props) => {
+    const appearQuest = ref(false);
     const targetTime = computed(() => {
       const orgTime = props.result.quest.level + 4;
       const additionalTime = props.result.quest.monsters.some(
@@ -84,11 +102,33 @@ export default defineComponent({
     onMounted(() => {
       location.hash = '';
       location.hash = 'result';
+      setTimeout(() => (appearQuest.value = true), 1000);
     });
 
     onUpdated(() => {
       location.hash = '';
       location.hash = 'result';
+    });
+
+    const sleep = (milliseconds: number, someFunction: () => void) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(someFunction());
+        }, milliseconds);
+      });
+    };
+    // アニメーション
+    onMounted(() => {
+      const result = document.getElementById('result')!;
+      const quest = result.querySelector('.quest')!;
+      const weapon = result.querySelector('.weapon')!;
+
+      sleep(1000, () => {
+        result.classList.add('appear');
+        result.classList.remove('disappear');
+        quest.classList.add('quest-appear');
+        quest.classList.remove('quest-disappear');
+      });
     });
 
     return {
@@ -115,6 +155,7 @@ export default defineComponent({
 .quest {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .quest-info,
@@ -143,6 +184,7 @@ export default defineComponent({
 .weapom-img,
 .monster-img {
   width: 64px;
+  height: 64px;
 }
 
 .quest-name {
@@ -162,5 +204,71 @@ export default defineComponent({
 .deadline-minuts {
   font-size: 24px;
   font-weight: 600;
+}
+
+/* animation */
+.quest-addition-info-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+.quest-disappear .quest-additional-info {
+  position: relative;
+  transform: translateY(-2em);
+}
+
+.quest-additional-info {
+  display: block;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+.central-line {
+  width: 100%;
+  position: relative;
+}
+
+.animation-line::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  content: '';
+  height: 1px;
+  width: 0;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  background-color: black;
+}
+
+.quest-appear .animation-line::after {
+  animation-name: central-line-keyframe;
+  animation-duration: 3s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes central-line-keyframe {
+  0% {
+    transform: translate(-50%, 0);
+    width: 0%;
+  }
+  15% {
+    transform: translate(-50%, 0);
+    width: 100%;
+  }
+
+  60% {
+    transform: translate(-50%, 0);
+  }
+
+  70% {
+    transform: translate(-50%, -64px);
+  }
+
+  85% {
+    transform: translate(-50%, -64px);
+    width: 100%;
+  }
+
+  100% {
+    transform: translate(-50%, -64px);
+    width: 0%;
+  }
 }
 </style>
