@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, reactive, watch } from 'vue';
-import { Quests } from '../data/quest';
+import { Quest, Quests } from '../data/quest';
 import { Weapon, Weapons } from '../data/weapons';
 import { Option as IOption } from '../types/option';
 import SelectOption from './SelectOption.vue';
@@ -29,6 +29,7 @@ const defaultOption: IOption = {
     lobby: true,
     event: true,
     highLevel: true,
+    arena: true,
   },
   monster: {
     normal: true,
@@ -70,6 +71,7 @@ const getOptionByUrl = () => {
       lobby: url.searchParams.get('lobby') !== 'false',
       event: url.searchParams.get('event') !== 'false',
       highLevel: url.searchParams.get('highLevel') !== 'false',
+      arena: url.searchParams.get('arena') != 'false',
     },
     monster: {
       normal: url.searchParams.get('normal') !== 'false',
@@ -119,7 +121,8 @@ const filterQuest = (option: IOption) => {
     selectLevels.push(7);
   }
 
-  const selectTypes: ('里' | '集会所' | 'イベント' | '高難度')[] = [];
+  const selectTypes: ('里' | '集会所' | 'イベント' | '高難度' | '闘技場')[] =
+    [];
   if (option.types.village) {
     selectTypes.push('里');
   }
@@ -131,6 +134,9 @@ const filterQuest = (option: IOption) => {
   }
   if (option.types.highLevel) {
     selectTypes.push('高難度');
+  }
+  if (option.types.arena) {
+    selectTypes.push('闘技場');
   }
 
   return Quests.filter(
@@ -146,7 +152,7 @@ const filterQuest = (option: IOption) => {
   );
 };
 
-const filterWeapon = (option: IOption) => {
+const filterWeapon = (option: IOption, selectedQuest: Quest) => {
   const filterd: Weapon[] = [];
   if (option.weapons.greadSword) {
     filterd.push(Weapons[0]);
@@ -190,7 +196,11 @@ const filterWeapon = (option: IOption) => {
   if (option.weapons.bow) {
     filterd.push(Weapons[13]);
   }
-  return filterd;
+
+  return filterd.filter(
+    (filterdWeapon) =>
+      !selectedQuest.weapons || selectedQuest.weapons?.includes(filterdWeapon)
+  );
 };
 
 const setUrl = (option: IOption) => {
@@ -235,12 +245,18 @@ export default defineComponent({
 
     const select = () => {
       const filterdQuest = filterQuest(option);
+      if (filterdQuest.length === 0) {
+        return;
+      }
       const selectQuest =
-        filterdQuest[Math.floor(Math.random() * (filterdQuest.length - 1))];
+        filterdQuest[Math.floor(Math.random() * filterdQuest.length)];
 
-      const filterdWeapon = filterWeapon(option);
+      const filterdWeapon = filterWeapon(option, selectQuest);
+      if (filterdWeapon.length === 0) {
+        return;
+      }
       const selectWeapon =
-        filterdWeapon[Math.floor(Math.random() * (filterdWeapon.length - 1))];
+        filterdWeapon[Math.floor(Math.random() * filterdWeapon.length)];
 
       context.emit('select', { quest: selectQuest, weapon: selectWeapon });
     };

@@ -15,6 +15,9 @@
               :data-star="i"
               >★
             </span>
+            <span v-if="result.quest.type === '闘技場'" class="notation"
+              >(独断と偏見です)</span
+            >
           </span>
         </span>
       </div>
@@ -81,7 +84,7 @@ export default defineComponent({
         ? 5
         : 0;
       const targetCountTime = Math.floor(
-        (props.result.quest.monsters.length - 1) * 0.8 * orgTime
+        (props.result.quest.monsters.length - 1) * 0.6 * orgTime
       );
       const range = orgTime;
       const questAdditionalTome = props.result.quest.type === '高難度' ? 4 : 0;
@@ -188,7 +191,8 @@ export default defineComponent({
 }
 
 .quest-name {
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Shippori Mincho', '游明朝', 'Yu Mincho', YuMincho,
+    'Hiragino Mincho Pro', serif;
   font-size: 48px;
 }
 
@@ -204,6 +208,10 @@ export default defineComponent({
 .deadline-minuts {
   font-size: 24px;
   font-weight: 600;
+}
+
+.notation {
+  font-size: 10.5px;
 }
 
 /* animation */
