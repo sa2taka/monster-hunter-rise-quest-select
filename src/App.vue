@@ -21,17 +21,30 @@ export default defineComponent({
     SelectQuest,
     SelectedResult,
   },
+
   setup: () => {
     const select = ref<Result | null>(null);
 
     const onSelect = (result: Result) => {
-      select.value = result;
+      if (select.value) {
+        select.value = null;
+        setTimeout(() => {
+          select.value = result;
+        }, 1);
+      } else {
+        select.value = result;
+      }
     };
 
     return {
       select,
       onSelect,
     };
+  },
+  methods: {
+    forceUpdate() {
+      this.$forceUpdate();
+    },
   },
 });
 </script>
