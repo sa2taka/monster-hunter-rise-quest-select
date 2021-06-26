@@ -327,4 +327,4 @@ export const Monsters = [
     apex: false,
     old: true,
   },
-];
+] as const;
