@@ -5,8 +5,8 @@ export interface Quest {
   name: string;
   level: number;
   type: '里' | '集会所' | 'イベント' | '高難度' | '闘技場';
-  monsters: typeof Monsters[number][];
-  weapons?: typeof Weapons[number][];
+  monsters: Monster[];
+  weapons?: Weapon[];
 }
 export interface RawQuest {
   name: string;
