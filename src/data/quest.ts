@@ -5,15 +5,15 @@ export interface Quest {
   name: string;
   level: number;
   type: '里' | '集会所' | 'イベント' | '高難度' | '闘技場';
-  monsters: Monster[];
-  weapons?: Weapon[];
+  monsters: typeof Monsters[number][];
+  weapons?: typeof Weapons[number][];
 }
 export interface RawQuest {
   name: string;
   level: number;
   type: '里' | '集会所' | 'イベント' | '高難度' | '闘技場';
-  monsters: string[];
-  weapons?: string[];
+  monsters: typeof Monsters[number]['name'][];
+  weapons?: typeof Weapons[number]['name'][];
 }
 
 export const RawQuests: RawQuest[] = [

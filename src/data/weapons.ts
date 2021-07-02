@@ -3,7 +3,7 @@ export interface Weapon {
   image: string;
 }
 
-export const Weapons: Weapon[] = [
+export const Weapons = [
   {
     name: '大剣',
     image: '大剣.png',
@@ -60,4 +60,4 @@ export const Weapons: Weapon[] = [
     name: '弓',
     image: '弓.png',
   },
-];
+] as const;
