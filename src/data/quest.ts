@@ -1253,6 +1253,20 @@ export const RawQuests: RawQuest[] = [
     monsters: ['ヨツミワドウ'],
     weapons: ['双剣', 'ランス', 'ハンマー', '操虫棍', 'ヘビィボウガン'],
   },
+
+  {
+    name: '泥の翁とポップカルチャー',
+    level: 7,
+    type: 'イベント',
+    monsters: ['オロミドロ'],
+  },
+
+  {
+    name: '夜の湿地で化かし合い',
+    level: 7,
+    type: 'イベント',
+    monsters: ['オオナズチ'],
+  },
 ];
 
 export const Quests: Quest[] = RawQuests.map((quest) => {
