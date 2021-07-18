@@ -1262,6 +1262,13 @@ export const RawQuests: RawQuest[] = [
   },
 
   {
+    name: '夜の湿地で化かし合い',
+    level: 7,
+    type: 'イベント',
+    monsters: ['オオナズチ'],
+  },
+
+  {
     name: '百龍夜行：泥土の進軍',
     level: 7,
     type: 'イベント',
