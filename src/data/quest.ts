@@ -1253,6 +1253,27 @@ export const RawQuests: RawQuest[] = [
     monsters: ['ヨツミワドウ'],
     weapons: ['双剣', 'ランス', 'ハンマー', '操虫棍', 'ヘビィボウガン'],
   },
+
+  {
+    name: '泥と翁のポップカルチャー',
+    level: 7,
+    type: 'イベント',
+    monsters: ['オロミドロ'],
+  },
+
+  {
+    name: '百龍夜行：泥土の進軍',
+    level: 7,
+    type: 'イベント',
+    monsters: ['オロミドロ'],
+  },
+
+  {
+    name: '称号：ゴウケツの心',
+    level: 7,
+    type: 'イベント',
+    monsters: ['ティガレックス', 'ディアブロス'],
+  },
 ];
 
 export const Quests: Quest[] = RawQuests.map((quest) => {
