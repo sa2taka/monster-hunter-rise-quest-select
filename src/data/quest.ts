@@ -910,7 +910,7 @@ export const RawQuests: RawQuest[] = [
     name: 'うさ団子貫く四つの角！の巻',
     level: 7,
     type: '集会所',
-    monsters: ['ディアブロス'],
+    monsters: ['ディアブロス', 'ディアブロス'],
   },
 
   {
