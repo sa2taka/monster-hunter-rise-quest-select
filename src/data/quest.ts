@@ -1281,6 +1281,13 @@ export const RawQuests: RawQuest[] = [
     type: 'イベント',
     monsters: ['ティガレックス', 'ディアブロス'],
   },
+
+  {
+    name: '氷の刃が眩しくて',
+    level: 7,
+    type: 'イベント',
+    monsters: ['ゴシャハギ'],
+  },
 ];
 
 export const Quests: Quest[] = RawQuests.map((quest) => {
